@@ -45,16 +45,3 @@ def checkConvergence(dif, numIter):
         return True
 
     return False
-
-def plotGradient(x, y, hy):
-
-    plt.scatter(x, y, s=16, marker='x', label='Training Data')
-    plt.plot(x, hy, label='Linear regression', c='red')
-
-    plt.xlim(xmin=4, xmax=24)
-    plt.xlabel('População (mil)')
-    plt.ylabel('Lucro ($ - mil)')
-
-    plt.legend(loc=4);
-
-    return plt

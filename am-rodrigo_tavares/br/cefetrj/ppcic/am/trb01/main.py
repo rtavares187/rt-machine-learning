@@ -5,6 +5,7 @@ Aluno: Rodrigo Tavares de Souza
 
 from computarCusto import *
 from gduni import *
+from graficos import *
 
 # 1 Regressão Linear com uma Variável
 
@@ -16,7 +17,8 @@ x = data[:, 0]
 y = data[:, 1]
 m = len(x)
 
-plt = scatterPlot(x, y)
+plt = graficoDispersao(x, y)
+plt.savefig("image\\fig_1_plotagem_dados.png")
 #plt.show()
 plt.clf()
 
@@ -35,7 +37,8 @@ alpha = 0.01
 theta, histJ = gduni(alpha, jx, y, theta)
 hy = jx.dot(theta.T)
 
-plt = plotGradient(x, y, hy)
+plt = graficoFuncaoGradiente(x, y, hy)
+plt.savefig("image\\fig_2_plotagem_dados_funcao_gradiente.png")
 #plt.show()
 plt.clf()
 
@@ -80,10 +83,12 @@ for i in range (0, len(jC)):
     for j in range (0, len(jC[i])):
         jC[i][j] = computarCusto(jx,y, np.array([thetaZeroC[i, j], thetaUmC[i, j]]))
 
-plt = contourPlot(thetaZeroC, thetaUmC, jC, theta)
+plt = graficoCurvaContorno(thetaZeroC, thetaUmC, jC, theta)
+plt.savefig("image\\fig_3_curvas_contorno.png")
 #plt.show()
 plt.clf()
 
-plt = surfacePlot(thetaZeroC, thetaUmC, jC)
-plt.show()
+plt = graficoSuperficie(thetaZeroC, thetaUmC, jC)
+plt.savefig("image\\fig_4_superficie_funcao.png")
+#plt.show()
 plt.clf()
