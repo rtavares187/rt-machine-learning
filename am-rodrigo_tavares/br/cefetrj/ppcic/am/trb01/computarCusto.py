@@ -7,7 +7,7 @@ import numpy as np
 
 def loadData(filePath):
 
-    data = np.loadtxt('data/ex1data1.txt', delimiter=',')
+    data = np.loadtxt(filePath, delimiter=',')
     return data
 
 def computarCusto(x, y, theta):
@@ -16,6 +16,6 @@ def computarCusto(x, y, theta):
 
     h = np.dot(x, theta)
 
-    cost = (1 / (2 * m)) * np.sum(np.square(h - y))
+    custo = (1 / (2 * m)) * np.sum(np.square(h - y))
 
-    return cost
+    return custo

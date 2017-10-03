@@ -1,6 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+print (np.log(np.inf))
+
+t = np.array([-3.63029144, 1.16636235])
+r = np.array([1, 70000]).dot(t)
+print(r)
+
+a = np.array([0, 0, 0])
+print (a)
+a = a.reshape(-1,1)
+print (a)
+
+ar = np.array([1,3, 5, 7, 8, 9, 10])
+print (ar.min())
 
 print (np.logspace(-2, 3, 20))
 

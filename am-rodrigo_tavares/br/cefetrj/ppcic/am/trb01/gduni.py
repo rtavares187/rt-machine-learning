@@ -6,42 +6,44 @@ Aluno: Rodrigo Tavares de Souza
 import numpy as np
 from computarCusto import *
 
-difIter = 0.0001
 maxIter = 4000
+eps = 0.0001
 
 def gduni(alpha, gx, y, theta):
 
     m = len(gx)
     histJ = np.zeros(maxIter)
+    histTheta = np.zeros((maxIter, len(theta)))
 
     numIter = 0
-    dif = 999
+    dif = None
 
     while not (checkConvergence(dif, numIter)):
 
         h = gx.dot(theta)
+        err = h - y
 
-        # Usando X transposto pra ficar com a primeira linha com valores iguais a 1
+        # Usando X transposto, a primeira coluna com valores iguais a 1
         # para multiplicar pelo theta zero que é o termo independente da hipótese
-        thetaUpdate = alpha * (1 / m) * (gx.T.dot(h - y))
+        thetaUpdate = alpha * (1 / m) * (gx.T.dot(err))
 
+        oldTheta = theta
         theta = theta - thetaUpdate
 
-        j = computarCusto(gx, y, theta)
-        histJ[numIter] = j
+        histJ[numIter] = computarCusto(gx, y, theta)
+        histTheta[numIter] = theta
 
-        lastJ = 0
-        if(numIter > 0):
-            lastJ = histJ[numIter - 1]
-
-        dif = j - lastJ
+        dif = abs(np.linalg.norm(theta) - np.linalg.norm(oldTheta))
         numIter = numIter + 1
 
-    return theta, histJ
+    return theta, histJ, numIter, histTheta
 
 def checkConvergence(dif, numIter):
 
-    if abs(dif) < difIter or numIter > maxIter:
-        return True
+    if dif is None:
+        return False
+
+    if (dif < eps) or numIter >= maxIter:
+         return True
 
     return False
