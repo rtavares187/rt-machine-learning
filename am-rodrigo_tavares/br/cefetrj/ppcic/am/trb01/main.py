@@ -3,6 +3,7 @@ PPCIC - Aprendizado de Máquina - Prof. Eduardo Bezerra
 Aluno: Rodrigo Tavares de Souza
 """
 
+from util import *
 from gduni import *
 from graficos import *
 from normalizarCaracteristica import *

@@ -5,11 +5,6 @@ Aluno: Rodrigo Tavares de Souza
 
 import numpy as np
 
-def loadData(filePath):
-
-    data = np.loadtxt(filePath, delimiter=',')
-    return data
-
 def computarCusto(x, y, theta):
 
     m = len(x)
