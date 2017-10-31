@@ -5,6 +5,8 @@ Aluno: Rodrigo Tavares de Souza
 
 # TRABALHO 2 - PARTE A
 
+# 1 Regressão Logística com Regularização
+
 # 1.1 Visualização dos Dados
 
 from util import *
@@ -79,6 +81,8 @@ _lambda = 0
 
 cost = linearRegCostFunction(theta, gx, y, _lambda)
 print("Custo com thetas iguais a um: " + str(cost))
+
+# 2.3 Gradiente na regressão linear regularizada
 
 theta = gdLinearReg(theta, gx, y, _lambda)
 print("Gradientes com thetas inicializados com 1: theta[0] = " + str(theta[0]) + " e theta[1] = " + str(theta[1]))
@@ -206,6 +210,10 @@ plt.clf()
 
 # TRABALHO 2 - PARTE B
 
+# 1 Introdução
+
+# 2 Detecção de Anomalias
+
 # 2.1 Distribuição Gaussiana
 
 X, Xval, yval = loadMatLabDataB("data/ex8data1.mat")
@@ -213,6 +221,9 @@ X, Xval, yval = loadMatLabDataB("data/ex8data1.mat")
 # 2.2 Estimativa de parâmetros para uma gaussiana
 
 mu, sigma2 = estimativaGaussian(X)
+
+print("Média: " + str(mu))
+print("Variância: " + str(sigma2))
 
 plt = graficoDistribuicaoGaussiana(X[:,0], X[:,1])
 plt.savefig("image\\fig_10_distribuicao_gaussiana.png")
@@ -238,7 +249,8 @@ X, Theta = loadMatLabDataD('data/ex8_movieParams.mat')
 Xlim = X[:,:100]
 Thetalim = Theta[:,:100]
 
-# Pediu pra pegar 100 colunas de X e Theta, mas as matrizes são nm x 10 e nu x 10
+# Enunciado pediu para pegar 100 colunas de X e Theta, mas as matrizes são nm x 10 e nu x 10,
+# logo foram utilizadas as 10 características
 
 # 3.2 Algoritmo de aprendizagem de filtragem colaborativa
 
@@ -246,8 +258,21 @@ Thetalim = Theta[:,:100]
 
 custo, grad = cofiCostFunc(Xlim, Thetalim, Y, R)
 print("Custo = " + str(custo))
+print("Gradiente = " + str(grad))
+
+nu = 4
+nm = 5
+nx = 3
+
+Xlim = X[0:nm, 0:nx]
+Thetalim = Theta[0:nu, 0:nx]
+Y = Y[0:nm, 0:nu]
+R = R[0:nm, 0:nu]
+
+custo, grad = cofiCostFunc(Xlim, Thetalim, Y, R, nu, nm, nx)
+print("Custo com nu=4, nm=5 e nm=3 = " + str(custo))
 
 # Custo diferente do enunciado quando calculado para todos os filmes, todos os usuários e todas as características
 
 # 3.2.2 Gradiente de filtragem colaborativa
-print("Gradiente = " + str(grad))
+print("Gradiente com nu=4, nm=5 e nm=3 = " + str(grad))

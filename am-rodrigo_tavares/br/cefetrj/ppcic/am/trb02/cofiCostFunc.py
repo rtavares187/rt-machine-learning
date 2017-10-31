@@ -5,13 +5,18 @@ Aluno: Rodrigo Tavares de Souza
 
 import numpy as np
 
-def cofiCostFunc(X, Theta, Y, R):
+def cofiCostFunc(X, Theta, Y, R, nu=None, nm=None, nx=None):
 
     xTheta = np.concatenate((np.ravel(X), np.ravel(Theta)))
 
-    nm = Y.shape[0]
-    nu = Y.shape[1]
-    nx = X.shape[1]
+    if nm is None:
+        nm = Y.shape[0]
+
+    if nu is None:
+        nu = Y.shape[1]
+
+    if nx is None:
+        nx = X.shape[1]
 
     X = np.matrix(np.reshape(xTheta[0:nm * nx], (nm, nx)))
     Theta = np.matrix(np.reshape(xTheta[nm * nx:], (nu, nx)))
