@@ -1,7 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-print (np.log(np.inf))
+a = np.array([2, 3, 4])
+b = np.array([5, 6, 7])
+
+print (np.multiply(a, b))
 
 t = np.array([-3.63029144, 1.16636235])
 r = np.array([1, 70000]).dot(t)

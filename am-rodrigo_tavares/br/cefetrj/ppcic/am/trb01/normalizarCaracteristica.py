@@ -7,10 +7,25 @@ import numpy as np
 
 def normalizarCaracteristica(x):
 
-    u = np.mean(x)
-    s = np.std(x)
+    if len(x.shape) == 1:
+        n = 1
+    else:
+        n = x.shape[1]
 
-    xn = x - u
-    xn = xn / s
+    nx = np.zeros(x.shape)
+    u = np.zeros(n)
+    s = np.zeros(n)
 
-    return xn, u, s
+    for i in range(0, n):
+
+        if n > 1:
+            u[i] = np.mean(x[:,i])
+            s[i] = np.std(x[:,i])
+            nx[:,i] = (x[:,i] - u[i]) / s[i]
+
+        else:
+            u = np.mean(x)
+            s = np.std(x)
+            nx = (x - u) / s
+
+    return nx, u, s

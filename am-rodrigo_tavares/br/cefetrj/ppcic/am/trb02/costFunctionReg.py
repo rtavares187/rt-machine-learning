@@ -33,7 +33,7 @@ def gdRLOptUpdate(theta, gx, y, _lambda):
     h = sigmoide(gx.dot(theta))
     err = h - y
 
-    thetaReg = theta
+    thetaReg = np.copy(theta)
     thetaReg[0] = 0
 
     thetaUpdate = (1 / m) * (gx.T.dot(err)) + ((_lambda / m) * thetaReg)
